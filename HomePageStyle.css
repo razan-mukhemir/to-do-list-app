@@ -52,6 +52,7 @@ body{
 .listContainer #myMenu{
     max-height: 250px;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 0;
 }
 #myMenu li{
@@ -71,7 +72,7 @@ body{
   }
   #myMenu li i{
     position: absolute;
-    right: 0px;
+    right: -45px;
     width: 45px;
     height: 30px;
     line-height: 30px;
@@ -79,6 +80,10 @@ body{
     color: #fff;
     border-radius: 0 3px 3px 0;
     cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  #myMenu li:hover i{
+    right: 0;
   }
   #myMenu li .deleteBtn{
     top: 0;
