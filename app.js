@@ -1,4 +1,5 @@
 let searchText=document.getElementById('mySearch');
+
 function searchTask() {
     var filter, ul, li, p, i;
     filter = searchText.value.toUpperCase();
