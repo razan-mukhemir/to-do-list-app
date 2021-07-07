@@ -1,0 +1,38 @@
+<!Doctype html>
+<html>
+
+<head>
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>to do list</title>
+	<link rel='stylesheet' href='style.css'>
+	<script src="https://kit.fontawesome.com/1aaab1ccda.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div>
+		<div class='listContainer'>
+			<header>Todo App</header>
+			<div class="searchField">
+				<input type="text" id="mySearch" onkeyup="searchTask()" placeholder="Search..">
+				<button onclick="removeSearchText()"><i class="fas fa-times"></i></button>
+			</div>
+			<div class="listContent">
+				<ul id="myMenu">
+				</ul>
+			</div>
+			<div class="listInfo">
+				<p>ToDo : <span id="todoCount"></span></p>
+				<p>Done : <span id="doneItemCount">0</span></p>
+			</div>
+			<hr>
+			<div class="add-item">
+				<label>Task<input id="taskField" type="text" placeholder="add new task ..."></label>
+				<label>Assignee<input id="assigneeField" type="text" placeholder="add new assignee ..."></label>
+				<button id="addToDo">add item</button>
+			</div>
+		</div>
+	</div>
+	<script src='app.js'></script>
+</body>
+
+</html>
