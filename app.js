@@ -39,8 +39,10 @@ function searchTask() {
     }else{
       list = JSON.parse(getLocalStorageData);
     }
-    list.push({'task':taskInput,'assignee':assigneeInput,'checked':false});
-    localStorage.setItem("New Todo", JSON.stringify(list)); 
+    if(taskInput !=='' && assigneeInput !==''){
+      list.push({'task':taskInput,'assignee':assigneeInput,'checked':false});
+    localStorage.setItem("New Todo", JSON.stringify(list));
+    } 
     showTasks(); 
    
   }
@@ -62,18 +64,30 @@ function searchTask() {
      if(element['checked']){
       newItem += `<li><p contenteditable="true"><span>Text: </span>${element['task']}</p>
       <p contenteditable="true"><span>Assignee: </span>${element['assignee']}</p>
-      <i class="fas fa-trash deleteBtn" onclick="deleteItem(${index})"></i>
+      <i class="fas fa-trash deleteBtn" onclick="openDeleteBox()"></i>
       <i class="far fa-edit editBtn" onclick="editItem(${index})"></i>
       <i class="far fa-check-circle checkedBtn check" onclick="checkItem(${index})"></i>
-      </li>`;
+      </li>
+      <div class="confirmDeleteBox" id="confirmDeleteBox">
+      <p>Are You Sure Delete This Task?</p>
+      <button onclick="deleteItem(${index})">Delete</button>
+      <button onclick="closeDeleteBox()">Cancel</button>
+      </div>
+      `;
      }
      else{
       newItem += `<li><p contenteditable="true"><span>Text: </span>${element['task']}</p>
       <p contenteditable="true"><span>Assignee: </span>${element['assignee']}</p>
-      <i class="fas fa-trash deleteBtn" onclick="deleteItem(${index})"></i>
+      <i class="fas fa-trash deleteBtn" onclick="openDeleteBox()"></i>
       <i class="far fa-edit editBtn" onclick="editItem(${index})"></i>
       <i class="far fa-circle checkedBtn uncheck" onclick="checkItem(${index})"></i>
-      </li>`;
+      </li>
+      <div class="confirmDeleteBox" id="confirmDeleteBox">
+      <p>Are You Sure Delete This Task?</p>
+      <button onclick="deleteItem(${index})">Delete</button>
+      <button onclick="closeDeleteBox()">Cancel</button>
+      </div>
+      `;
      }
     });
     toDoList.innerHTML = newItem; 
@@ -81,14 +95,21 @@ function searchTask() {
     assigneeField.value = "";
   }
 
+  function openDeleteBox(){
+    var deleteModal=document.getElementById('confirmDeleteBox');
+    deleteModal.style.display="block";
+  }
+  function closeDeleteBox(){
+    var deleteModal=document.getElementById('confirmDeleteBox');
+    deleteModal.style.display="none";
+  }
+
   function deleteItem(index){
-    if(confirm('Are You Sure Delete This Task')){
       let getLocalStorageData = localStorage.getItem("New Todo");
       list = JSON.parse(getLocalStorageData);
       list.splice(index, 1);
       localStorage.setItem("New Todo", JSON.stringify(list));
       showTasks();
-    }
   }
 
   function checkItem(index){
